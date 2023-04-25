@@ -15,7 +15,11 @@ let decade2010 = [];
 d3.csv('imdb_top_1000.csv')
   .then(movies => {
     
-    //console.log(d3.max(movies.Released_Year));
+    var movieList = movies.map(function(d) {
+      return d; // Return each row as an object
+    });
+    console.log(movieList);
+   
     // Loop through each movie
     movies.forEach(movie => {
       // Get the released year of the movie
@@ -57,9 +61,47 @@ d3.csv('imdb_top_1000.csv')
     console.log('Decade 1990:', decade1990);
     console.log('Decade 2000:', decade2000);
     console.log('Decade 2010:', decade2010);
+
+
   })
   //.catch(error => console.error(error));
 
+  //visualization 1
+
+  
+   /*
+    var svg = d3.select("svg")
+              .attr("width", 500)
+              .attr("height", 500);
+
+    
+    svg.selectAll("circle")
+      .data(data).enter()
+      .append("circle")
+      .attr("cx", function(d) {return d.x})
+      .attr("cy", function(d) {return d.y})
+      .attr("r", function(d) {
+        return Math.sqrt(d.val)/Math.PI 
+      })
+      .attr("fill", function(d) {
+        return d.color;
+      });
+
+    svg.selectAll("text")
+      .data(data).enter()
+      .append("text")
+      .attr("x", function(d) {return d.x+(Math.sqrt(d.val)/Math.PI)})
+      .attr("y", function(d) {return d.y+4})
+      .text(function(d) {return d.source})
+      .style("font-family", "arial")
+      .style("font-size", "12px") */
+
+
+  //visualization 2
+
+
+
+  //visualization 3
 
 
 })();
