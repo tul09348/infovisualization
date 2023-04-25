@@ -11,14 +11,12 @@ let decade1990 = [];
 let decade2000 = [];
 let decade2010 = [];
 
+let width = 500; 
+let height = 500; 
+
 // Read CSV file using d3.js
 d3.csv('imdb_top_1000.csv')
   .then(movies => {
-    
-    var movieList = movies.map(function(d) {
-      return d; // Return each row as an object
-    });
-    console.log(movieList);
    
     // Loop through each movie
     movies.forEach(movie => {
@@ -62,39 +60,60 @@ d3.csv('imdb_top_1000.csv')
     console.log('Decade 2000:', decade2000);
     console.log('Decade 2010:', decade2010);
 
+    var moviess = movies.map(function(movie) {
+      var firstGenre = movie.Genre.split(",")[0].trim(); // Extract first genre
+      movie.Genre = firstGenre; // Update movie's genre field
+      return movie;
+    });
 
-  })
-  //.catch(error => console.error(error));
-
-  //visualization 1
-
-  
-   /*
-    var svg = d3.select("svg")
-              .attr("width", 500)
-              .attr("height", 500);
+    console.log(movies);
 
     
-    svg.selectAll("circle")
-      .data(data).enter()
-      .append("circle")
-      .attr("cx", function(d) {return d.x})
-      .attr("cy", function(d) {return d.y})
-      .attr("r", function(d) {
-        return Math.sqrt(d.val)/Math.PI 
-      })
-      .attr("fill", function(d) {
-        return d.color;
-      });
+  //visualization 1
 
-    svg.selectAll("text")
-      .data(data).enter()
+    // Set up the SVG container
+    var svg = d3.select("body")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    // Define the pack layout
+    var pack = d3.pack()
+      .size([width, height])
+      .padding(1);
+
+    // Prepare the movie genre data
+    var genreData = Array.from(d3.group(movies, d => d.Genre), ([key, values]) => ({ Genre: key, Count: values.length }));
+
+    // Convert the genre data to a hierarchical structure
+    var root = d3.hierarchy({ children: genreData }, function (d) { return d.children; })
+      .sum(function (d) { return d.Count; });
+
+    // Create the circles
+    var nodes = pack(root).descendants();
+    var circles = svg.selectAll("circle")
+      .data(nodes)
+      .enter()
+      .append("circle")
+      .attr("cx", function (d) { return d.x; })
+      .attr("cy", function (d) { return d.y; })
+      .attr("r", function (d) { return d.r; })
+      .attr("fill", "steelblue")
+      .attr("stroke", "white")
+      .attr("stroke-width", 1);
+
+    // Add genre labels
+    var labels = svg.selectAll("text")
+      .data(nodes)
+      .enter()
       .append("text")
-      .attr("x", function(d) {return d.x+(Math.sqrt(d.val)/Math.PI)})
-      .attr("y", function(d) {return d.y+4})
-      .text(function(d) {return d.source})
-      .style("font-family", "arial")
-      .style("font-size", "12px") */
+      .text(function (d) { return d.data.Genre + " (" + d.data.Count + ")"; }) // Display genre name and movie count
+      .attr("x", function (d) { return d.x; })
+      .attr("y", function (d) { return d.y; })
+      .attr("dy", ".35em")
+      .attr("text-anchor", "middle")
+      .attr("font-size", "12px")
+      .attr("fill", "white");
 
 
   //visualization 2
@@ -102,6 +121,6 @@ d3.csv('imdb_top_1000.csv')
 
 
   //visualization 3
-
+  })
 
 })();
