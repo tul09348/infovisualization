@@ -11,8 +11,8 @@
   let decade2000 = [];
   let decade2010 = [];
   
-  let width = 500; 
-  let height = 500; 
+  let width = 600; 
+  let height = 600; 
   
   // Read CSV file using d3.js
   d3.csv('imdb_top_1000.csv')
@@ -72,7 +72,7 @@
     //visualization 1
   
       // Set up the SVG container
-      var svg = d3.select("#visualization3")
+      var svg = d3.select("#visualization1")
         .append("svg")
         .attr("width", width)
         .attr("height", height);
