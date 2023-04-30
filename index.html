@@ -6,7 +6,8 @@
         <!-- import D3 Version 6 here or at the end of the body -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.7.0/d3.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
-        <script src = "./circlepacking.js"></script>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        
 
     </head>
     <body>
@@ -15,8 +16,6 @@
         <h3 align="center">What makes a good movie?</h3>
         <h3 align="center">Data Source Link:<a href="https://www.kaggle.com/datasets/harshitshankhdhar/imdb-dataset-of-top-1000-movies-and-tv-shows"> IMDB Top 1000 Movies</a></h3>
 
-
-
         <div style="float: right; width: 100%">
             <h2 align="left">Decades by Ratings</h2>
             <svg id="visualization2" width="1400" height="400" align="right"></svg>
@@ -24,18 +23,24 @@
             <button id="toggle-btn">Toggle SVG</button>
         </div>
 
+        <script src = "./circlepacking.js"></script>
+
 
         <div style="float: left; width: 40%">        
             <h2 align="left">Top 1000 Movie Genres by IMDB Ratings</h2>
             <svg id="visualization1" width="600" height="600" align="left"></svg>
         </div>
 
-
-
-
-        <svg id="visualization3" width="1200" height="800"></svg>
-
         <script src = "./bargraph.js"></script>
 
+       <div style="float: right; width 60%">
+            <h2 align="left">Pie Chart</h2>
+            <svg id="visualization3" width="900" height="500"></svg>
+        </div>
+
+        <script src = "./piechart.js"></script>
+
+
+        
     </body>
 </html>
