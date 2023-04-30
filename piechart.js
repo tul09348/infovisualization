@@ -1,8 +1,8 @@
 (function() {
 
 // Set up the dimensions and margins of the visualization
-var width = 900;
-var height = 500;
+var width = 1200;
+var height = 900;
 
 // Set up the SVG container
 const svg = d3.select("#visualization3");
@@ -75,7 +75,7 @@ var labels = svg.selectAll("text")
     var x = Math.cos(a) * radius * 0.8;
     var y = Math.sin(a) * radius * 0.8;
     var angle = (a * 180 / Math.PI) + 90;
-    return "translate(" + (width / 2 + x) + "," + (height / 2 + y) + ") rotate(" + angle + ")";
+    return "translate(" + (width / 2 + x) + "," + (height / 2 + y) + ") rotate(" + 80 + ")";
   })      
   .attr("text-anchor", function(d) {
     // align the labels to the edge of the pie chart
