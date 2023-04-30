@@ -1,7 +1,7 @@
 (function() {
 
 // Set up the dimensions and margins of the visualization
-var width = 500;
+var width = 900;
 var height = 500;
 
 // Set up the SVG container
@@ -63,19 +63,25 @@ d3.csv("imdb_top_1000.csv")
     .attr("stroke-width", 2)
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-  // Add labels to the pie slices
-  var labels = svg.selectAll("text")
-    .data(pieChartData)
-    .enter()
-    .append("text")
-    .text(function(d) { return d.data.decade + ' (' + (d.data.percent * 100).toFixed(1) + '%)'; })
-    .attr("transform", function(d) {
-        var pos = arc.centroid(d);
-        pos[0] = pos[0] * 1.8; // adjust the horizontal position
-        return "translate(" + pos + ")";
-      })      
-    .attr("text-anchor", "middle")
-    .attr("font-size", "16px");
+// Add labels to the pie slices
+var labels = svg.selectAll("text")
+  .data(pieChartData)
+  .enter()
+  .append("text")
+  .text(function(d) { return d.data.decade + ' (' + (d.data.percent * 100).toFixed(1) + '%)'; })
+  .attr("transform", function(d) {
+    var radius = Math.min(width, height) / 2;
+    var a = (d.startAngle + d.endAngle) / 2 - Math.PI / 2;
+    var x = Math.cos(a) * radius * 0.8;
+    var y = Math.sin(a) * radius * 0.8;
+    var angle = (a * 180 / Math.PI) + 90;
+    return "translate(" + (width / 2 + x) + "," + (height / 2 + y) + ") rotate(" + angle + ")";
+  })      
+  .attr("text-anchor", function(d) {
+    // align the labels to the edge of the pie chart
+    return (d.startAngle + d.endAngle) / 2 > Math.PI ? "end" : "start";
+  })
+  .attr("font-size", "16px");
     });
 
 
