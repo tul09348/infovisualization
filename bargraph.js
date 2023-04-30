@@ -133,10 +133,10 @@
       //visualization 2
 
       // Define the dimensions of the SVG element
-    const width = 800;
+    const width = 1250;
     const height = 400;
     const margin = { top: 20, right: 20, bottom: 40, left: 40 };
-    const innerWidth = width - margin.left - margin.right;
+    const innerWidth = width - margin.left - margin.right -60;
     const innerHeight = height - margin.top - margin.bottom;
     
     
@@ -153,14 +153,14 @@
     
     // Define the color scale
     const colorScale = d3.scaleOrdinal()
-      .domain(Object.keys(data[0]).slice(1))
+      .domain(Object.keys(data[0]).slice(1, -1))
       .range(d3.schemeCategory10);
     
     // Create the SVG element
     const svg = d3.select('#visualization2')
-      .append('svg')
-      .attr('width', width)
-      .attr('height', height);
+      //.append('svg')
+      //.attr('width', width)
+      //.attr('height', height);
     
     
     // Add the x-axis to the SVG element
@@ -199,7 +199,7 @@
        
       // Add the legend to the SVG element
   const legend = svg.append('g')
-  .attr('transform', `translate(${innerWidth + margin.left + 10}, ${margin.top})`)
+  .attr('transform', `translate(${innerWidth+40}, ${margin.top})`)
   .selectAll('g')
   .data(colorScale.domain())
   .enter()
@@ -216,7 +216,7 @@ legend.append('rect')
   legend.append('text')
   .attr('x', 20)
   .attr('y', 10)
-  .attr('dy', '0.35em')
+  //.attr('dx', '0.35em')
   .text(d => d) 
   .attr('font-size', '14px')
   .attr('stroke', "1")
@@ -232,8 +232,8 @@ legend.append('rect')
 
 
 const margin2 = { top: 20, right: 20, bottom: 70, left: 70 };
-const width2 = 800 - margin2.left - margin2.right;
-const height2 = 500 - margin2.top - margin2.bottom;
+const width2 = 1250 - margin2.left - margin2.right;
+const height2 = 400 - margin2.top - margin2.bottom;
 
 // Define the x-axis scale
 const xScale2 = d3.scaleBand()
@@ -248,7 +248,7 @@ const yScale2 = d3.scaleLinear()
 
 // Create the SVG element
 const svg2 = d3.select('#visualization4')
-  .append('svg')
+  //.append('svg')
   .attr('width', width2 + margin2.left + margin2.right)
   .attr('height', height2 + margin2.top + margin2.bottom)
   .append('g')
