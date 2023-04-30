@@ -70,62 +70,59 @@
   
       
     //visualization 1
+    var svg = d3.select("#visualization1")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
   
-      // Set up the SVG container
-      var svg = d3.select("#visualization1")
-        .append("svg")
-        .attr("width", width)
-        .attr("height", height);
+  // Define the pack layout
+  var pack = d3.pack()
+    .size([width, height])
+    .padding(1);
   
-      // Define the pack layout
-      var pack = d3.pack()
-        .size([width, height])
-        .padding(1);
+  // Prepare the movie genre data
+  var genreData = Array.from(d3.group(movies, d => d.Genre), ([key, values]) => ({ Genre: key, Count: values.length }));
   
-      // Prepare the movie genre data
-      var genreData = Array.from(d3.group(movies, d => d.Genre), ([key, values]) => ({ Genre: key, Count: values.length }));
-
-      console.log(genreData);
-
+  console.log(genreData);
   
-      // Convert the genre data to a hierarchical structure
-      var root = d3.hierarchy({ children: genreData }, function (d) { return d.children; })
-        .sum(function (d) { return d.Count; });
-
-        console.log(root);
+  // Convert the genre data to a hierarchical structure
+  var root = d3.hierarchy({ children: genreData }, function (d) { return d.children; })
+    .sum(function (d) { return d.Count; });
   
-      // Create the circles
-      var nodes = pack(root).descendants();
-
-
-      var circles = svg.selectAll("circle")
-        .data(nodes)
-        .enter()
-        .append("circle")
-        .attr("cx", function (d) { return d.x; })
-        .attr("cy", function (d) { return d.y; })
-        .attr("r", function (d) { return d.r; })
-        .attr("fill", "black")
-        .attr("stroke", "white")
-        .attr("stroke-width", 1);
-
-        var nodes = pack(root).descendants().slice(1);
+  console.log(root);
   
-      // Add genre labels
-      var labels = svg.selectAll("text")
-        .data(nodes)
-        .enter()
-        .append("text")
-        .text(function (d) { return d.data.Genre + " (" + d.data.Count + ")"; }) // Display genre name and movie count
-        .attr("x", function (d) { return d.x; })
-        .attr("y", function (d) { return d.y; })
-        .attr("dy", ".10em")
-        .attr("text-anchor", "middle")
-        .attr("font-size", "15px")
-        .attr("fill", "white");
+  // Create the circles
+  var nodes = pack(root).descendants().slice(1);
   
+  var colorScale = d3.scaleOrdinal()
+    .domain(nodes.map(function(d) { return d.data.Genre; }))
+    .range(d3.schemeCategory10);
   
-   
+  var circles = svg.selectAll("circle")
+    .data(nodes)
+    .enter()
+    .append("circle")
+    .attr("cx", function (d) { return d.x; })
+    .attr("cy", function (d) { return d.y; })
+    .attr("r", function (d) { return d.r; })
+    .attr("fill", function(d) { return colorScale(d.data.Genre); })
+    .attr("stroke", "white")
+    .attr("stroke-width", 1);
+  
+  // Add genre labels
+  var labels = svg.selectAll("text")
+    .data(nodes)
+    .enter()
+    .append("text")
+    .text(function (d) { return d.data.Genre + " (" + d.data.Count + ")"; }) // Display genre name and movie count
+    .attr("x", function (d) { return d.x; })
+    .attr("y", function (d) { return d.y; })
+    .attr("dy", ".10em")
+    .attr("text-anchor", "middle")
+    .attr("font-size", "15px")
+    .attr("fill", "black");
+  
+      
     })
   
   })();
