@@ -277,7 +277,7 @@ svg2.selectAll('rect')
   .attr('y', d => yScale2(d.Total))
   .attr('width', xScale2.bandwidth())
   .attr('height', d => height2 - yScale2(d.Total))
-  .attr('fill', 'light-grey');
+  .attr('fill', 'grey');
 
 // Add x-axis label
 svg2.append('text')
