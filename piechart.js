@@ -1,8 +1,8 @@
 (function() {
 
 // Set up the dimensions and margins of the visualization
-var width = 920;
-var height = 920;
+var width = 850;
+var height = 850;
 
 // Set up the SVG container
 const svg = d3.select("#visualization3");
