@@ -167,6 +167,7 @@
     svg.append('g')
       .attr('transform', `translate(${margin.left}, ${innerHeight + margin.top})`)
       .call(d3.axisBottom(xScale));
+      
     
     // Add the y-axis to the SVG element
     svg.append('g')
@@ -196,6 +197,24 @@
       })
       .attr('height', d => innerHeight - yScale(d[1]))
       .attr('fill', d => colorScale(d[0]));
+
+      
+// Add x-axis label
+svg.append('text')
+.attr('class', 'x label')
+.attr('text-anchor', 'middle')
+.attr('x', width / 2)
+.attr('y', height - 10)
+.text('Decade');
+
+// Add y-axis label
+svg.append('text')
+.attr('class', 'y label')
+.attr('text-anchor', 'middle')
+.attr('x', - height / 2)
+.attr('y', 12)
+.attr('transform', 'rotate(-90)')
+.text('Total Movies');
        
       // Add the legend to the SVG element
   const legend = svg.append('g')
@@ -302,14 +321,18 @@ console.log("This runs");
       const toggleBtn = document.querySelector('#toggle-btn');
       const svg1HTML = document.querySelector('#visualization2');
       const svg2HTML = document.querySelector('#visualization4');
+      const title = document.querySelector('#bargraphTitle')
 
 toggleBtn.addEventListener('click', () => {
   if (svg1HTML.style.display !== 'none') {
     svg1HTML.style.display = 'none';
     svg2HTML.style.display = 'inline';
+    title.textContent = "Decade by Ratings"
   } else {
     svg1HTML.style.display = 'inline';
     svg2HTML.style.display = 'none';
+    title.textContent = "Decade by Genre"
+
   }
 });
     
