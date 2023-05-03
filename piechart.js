@@ -1,8 +1,8 @@
 (function() {
 
 // Set up the dimensions and margins of the visualization
-var width = 870;
-var height = 870;
+var width = 435;
+var height = 435;
 
 // Set up the SVG container
 const svg = d3.select("#visualization3");
@@ -81,7 +81,7 @@ var labels = svg.selectAll("text")
     // align the labels to the edge of the pie chart
     return (d.startAngle + d.endAngle) / 2 > Math.PI ? "end" : "start";
   })
-  .attr("font-size", "16px");
+  .attr("font-size", "8px");
     });
 
 
