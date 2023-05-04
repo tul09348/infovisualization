@@ -9,9 +9,10 @@
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
+    <!-- https://www.wallpapers.net/web/wallpapers/spot-light-background-hd-wallpaper/thumbnail/md.jpg -->
     <style>
 		body {
-			background-image: url('https://www.wallpapers.net/web/wallpapers/spot-light-background-hd-wallpaper/thumbnail/md.jpg');
+			background-image: url('https://e0.pxfuel.com/wallpapers/463/120/desktop-wallpaper-movie-theatre.jpg'); 
 			background-size: cover;
 			background-position: center center;
 			background-attachment: fixed;
@@ -19,38 +20,50 @@
             padding-right: 30px;
             padding-left: 30px;
 		}
+        
+  text {
+    fill: white;
+  }
+
+  g {
+    fill: white;
+  }
+    #bargraphTitle {
+         fill: white;
+    }
+
 	</style>
     <body>
 
         
-        <h1 style="text-align:center; font-size:48px; letter-spacing: 2px; color: #1a1a1a;">Genre Trends for Popular Movies by Decade</h1>
-        <h3 align="center" style="color: #1a1a1a;">What makes a good movie?</h3>
-        <h3 align="center" style="color: #1a1a1a;">Data Source Link:<a href="https://www.kaggle.com/datasets/harshitshankhdhar/imdb-dataset-of-top-1000-movies-and-tv-shows"> IMDB Top 1000 Movies</a></h3>
-        <h4 align="center" style="color: #1a1a1a; padding-bottom: 50px;" >IMDb stands for “Internet Movie Database”. It includes all kinds of information about all kinds of media but is renowned for and primarily focused towards movies. Its contributors include millions of internet users, representing the general audience's opinions rather than critics. We will be looking at the top 1000 rated movies on IMDb to see what kinds of movies are the most popular and how they change over time. (IMDb is overseen by a team of expert editors.)</h4>
-        <h3 align="center" style="color: #1a1a1a; padding-bottom: 50px">“Is Hollywood okay?” is the question we asked ourselves as we began diving into this project. Personally, we had felt that blockbuster movies had begun to decline in the past few years. It felt as if production companies were more concerned with extending their franchises endlessly than telling a good story and making a quality product. We felt confident there would be data supporting this, and we’d be able to investigate what made movies good in the past versus what they are now.</h3>
-        <h3 align="center" style="color: #1a1a1a; padding-bottom: 50px">As we dove into this issue, it turned out that our initial feelings towards the subject were not backed up with data. As illustrated in our Pie Chart below, movies made since 2000 make up nearly 50% of the top 1000 movies.</h3>
+        <h1 style="text-align:center; font-size:48px; letter-spacing: 2px; color: #efeaea;">Genre Trends for Popular Movies by Decade</h1>
+        <h3 align="center" style="color: #efeaea;">What makes a good movie?</h3>
+        <h3 align="center" style="color: #efeaea;">Data Source Link:<a href="https://www.kaggle.com/datasets/harshitshankhdhar/imdb-dataset-of-top-1000-movies-and-tv-shows"> IMDB Top 1000 Movies</a></h3>
+        <h4 align="center" style="color: #efeaea; padding-bottom: 50px;" >IMDb stands for “Internet Movie Database”. It includes all kinds of information about all kinds of media but is renowned for and primarily focused towards movies. Its contributors include millions of internet users, representing the general audience's opinions rather than critics. We will be looking at the top 1000 rated movies on IMDb to see what kinds of movies are the most popular and how they change over time. (IMDb is overseen by a team of expert editors.)</h4>
+        <h3 align="center" style="color: #efeaea; padding-bottom: 50px">“Is Hollywood okay?” is the question we asked ourselves as we began diving into this project. Personally, we had felt that blockbuster movies had begun to decline in the past few years. It felt as if production companies were more concerned with extending their franchises endlessly than telling a good story and making a quality product. We felt confident there would be data supporting this, and we’d be able to investigate what made movies good in the past versus what they are now.</h3>
+        <h3 align="center" style="color: #efeaea; padding-bottom: 50px">As we dove into this issue, it turned out that our initial feelings towards the subject were not backed up with data. As illustrated in our Pie Chart below, movies made since 2000 make up nearly 50% of the top 1000 movies.</h3>
         
         <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
 
             <div style="width: 100%; padding-bottom: 50px;" >
-                <h2 align="center" style="color: #1a1a1a;">Pie Chart</h2>
+                <h2 align="center" style="color: #efeaea;">Pie Chart</h2>
                 <svg id="visualization3" width="635" height="635" style="display: block; margin: 0 auto;"></svg>
             </div>
 
-            <h3 align="left" style="color: #1a1a1a; padding-bottom: 50px">So even though we were wrong and Hollywood is thriving, we still had a question to answer - what makes a good movie? More generally, we started examining what genres were popular overall. After some analysis, it was clear there were some standout genres, including drama, action and comedy.
+            <h3 align="left" style="color: #efeaea; padding-bottom: 50px">So even though we were wrong and Hollywood is thriving, we still had a question to answer - what makes a good movie? More generally, we started examining what genres were popular overall. After some analysis, it was clear there were some standout genres, including drama, action and comedy.
 			</h3>
 
-            <h2 style="color: #1a1a1a;">Top 1000 Movie Genres by IMDB Ratings</h2>
+            <h2 style="color: #efeaea;">Top 1000 Movie Genres by IMDB Ratings</h2>
             <svg id="visualization1" width="600" height="600"></svg>
 
-            <h3 align="left" style="color: #1a1a1a; padding-bottom: 50px">Now that we were able to see the general trends, we wanted to look at how the decades stack up against each other with the genres in mind. With the interactive bar chart(s) below we can see exactly which genres grew and shrunk in popularity each decade and how each decade performed against the others. </h3>
+            <h3 align="left" style="color: #efeaea; padding-bottom: 50px">Now that we were able to see the general trends, we wanted to look at how the decades stack up against each other with the genres in mind. With the interactive bar chart(s) below we can see exactly which genres grew and shrunk in popularity each decade and how each decade performed against the others. </h3>
 
-            <h2 id="bargraphTitle" style="color: #1a1a1a;">Decades by Genre</h2>
+            <h2 id="bargraphTitle" style="color: #efeaea;">Decades by Genre</h2>
             <svg id="visualization2" width="1400" height="400"></svg>
             <svg id="visualization4" width="1400" height="400" style="display:none"></svg>
             <button id="toggle-btn">Toggle SVG</button> 
 
-            <h3 align="left" style="color: #1a1a1a;">So while there may be plenty of movies that feel like things are going poorly, there’s more quality movies than ever before. Perhaps we all need to shift our focus to be able to embrace the quality work that is still making it out there.</h3>
+            <h3 align="left" style="color: #efeaea;">So while there may be plenty of movies that feel like things are going poorly, there’s more quality movies than ever before. Perhaps we all need to shift our focus to be able to embrace the quality work that is still making it out there.</h3>
         
         </div>
         

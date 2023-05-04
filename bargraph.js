@@ -323,6 +323,8 @@ console.log("This runs");
       const svg2HTML = document.querySelector('#visualization4');
       const title = document.querySelector('#bargraphTitle')
 
+      
+
 toggleBtn.addEventListener('click', () => {
   if (svg1HTML.style.display !== 'none') {
     svg1HTML.style.display = 'none';
